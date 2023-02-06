@@ -27,7 +27,7 @@ async function login(req, res, next) {
     const encryptPWD = Utils.encrypt(req.body.password);
     if (user && user.password === encryptPWD) {
       const token = JWTHelper.getJWTToken({
-        email: user.email
+        _userId: user._id
       });
       
       const userdata = {

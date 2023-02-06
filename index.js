@@ -13,7 +13,6 @@ const mongoConfig = {
   useNewUrlParser: true,
   useFindAndModify: true,
   poolSize: 2,
-  promiseLibrary: global.Promise,
   useUnifiedTopology: true
 };
 
@@ -33,8 +32,9 @@ app.listen(config.port, () => {
 app.use(errorHandler);
 
 function errorHandler (err, req, res, next) {
-  res.status(httpStatus.INTERNAL_SERVER_ERROR)
-  res.render('error', new APIError(err, httpStatus.INTERNAL_SERVER_ERROR));
+  // res.status(httpStatus.INTERNAL_SERVER_ERROR)
+  debugger
+  res.status(httpStatus.INTERNAL_SERVER_ERROR).send('error', new APIError(err, httpStatus.INTERNAL_SERVER_ERROR));
 }
 
 module.exports = app;

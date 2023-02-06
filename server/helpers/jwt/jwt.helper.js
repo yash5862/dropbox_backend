@@ -19,7 +19,7 @@ async function getAuthUser(token) {
 }
 
 function getJWTToken(data) {
-  const token = `${jwt.sign(data, config.jwtSecret)}`;
+  const token = `${jwt.sign(data, config.jwtSecret, { expiresIn: '2h' })}`;
   return token;
 }
 
@@ -33,6 +33,7 @@ function getJWTToken(data) {
       const decodedToken = jwt.verify(token, config.jwtSecret);
       return decodedToken;
   } catch (error) {
+    console.log('error', error);
       return false;
   }
 };
