@@ -24,5 +24,9 @@ router.route('/:_id')
 /** DELETE /api/files/:id - delete a file */
 .delete([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl._delete)
 
+router.route('/bulk')
+/** DELETE /api/files/bulk - delete bulk files */
+.delete([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl._deleteBulk)
+
 module.exports = router;
          

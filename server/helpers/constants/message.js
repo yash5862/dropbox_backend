@@ -21,6 +21,7 @@ module.exports = {
   SUCCESS_DEACTIVE: 'Record Sucessfully Deactivated.',
   SUCCESS_REVIEW: 'Thank you for review',
   SUCCESS_RESETPASS: 'Password Successfully Updatesd',
+  NOT_FOUND: "Record not found",
   SALARY_DATE_RONGE:'Start date is bigger then end date',
   TREND: 'Product display on trend.',
   NOTTREND: 'Product not display on trend.',

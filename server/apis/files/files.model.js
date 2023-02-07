@@ -12,8 +12,10 @@ const FilesSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  metadata: { type: String, required: true },
   name: { type: String, required: true },
+  originalName: {type: String},
+  mime: { type: String },
+  size: { type: Number },
   createdBy: {
     type: ObjectId,
     required: true,

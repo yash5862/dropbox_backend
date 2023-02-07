@@ -49,7 +49,6 @@ async function getAuthUser(req, res, next) {
 async function getValidUserData(query) {
   try {
     let userData = await User.find({ ...query });
-    debugger
     return userData;
   } catch (e) {
     throw new Error(e);

@@ -33,7 +33,6 @@ app.use(errorHandler);
 
 function errorHandler (err, req, res, next) {
   // res.status(httpStatus.INTERNAL_SERVER_ERROR)
-  debugger
   res.status(httpStatus.INTERNAL_SERVER_ERROR).send('error', new APIError(err, httpStatus.INTERNAL_SERVER_ERROR));
 }
 
