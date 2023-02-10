@@ -20,13 +20,13 @@ router.route('/:_id')
   /** GET /api/files/:id - get details of a file */
   .get([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl.get)
 
-router.route('/:_id')
+router.route('/')
 /** DELETE /api/files/:id - delete a file */
-.delete([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl._delete)
-
-router.route('/bulk')
-/** DELETE /api/files/bulk - delete bulk files */
 .delete([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl._deleteBulk)
+
+// router.route('/bulk')
+// /** DELETE /api/files/bulk - delete bulk files */
+// .delete([apiAuthMiddleware, bindUserDataMiddleware], filesCtrl._deleteBulk)
 
 module.exports = router;
          
