@@ -33,13 +33,10 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
   try {
-    console.log('req', req);
-
     if (!req.files || !req.files.length) {
       return res.status(httpStatus.BAD_REQUEST).send(new APIResponse({}, "No Files sent to the request!",httpStatus.BAD_REQUEST));  
     }
 
-    console.log('files', req.files);
     let newFiles = (req.files || []).map((file) => {
       return new files({
         name: file.filename,
@@ -52,7 +49,7 @@ async function create(req, res, next) {
     })
 
     const insertResponse = await files.insertMany(newFiles);
-    res.status(httpStatus.OK).send(new APIResponse(...insertResponse,Utils.messages.SUCCESS_INSERT,httpStatus.OK));
+    res.status(httpStatus.OK).send(new APIResponse(insertResponse,Utils.messages.SUCCESS_INSERT,httpStatus.OK));
   }
   catch (e) {
     return next(e);
@@ -87,6 +84,11 @@ async function _delete(req, res, next) {
 async function _deleteBulk(req, res, next) {
   const ids = req.body.ids;
   try {
+
+    if (!ids || !ids.length) {
+      return res.status(httpStatus.BAD_REQUEST).send(new APIResponse({}, "Please provide IDs of files to be deleted", httpStatus.BAD_REQUEST));
+    }
+
     const fileData = await files.find({ _id: { $in: ids }, createdBy: req._userId });
     if (fileData.length == 0) {
       return res.status(httpStatus.NOT_FOUND).send(new APIResponse({}, Utils.messages.NOT_FOUND, httpStatus.NOT_FOUND));

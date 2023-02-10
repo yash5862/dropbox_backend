@@ -39,7 +39,6 @@ async function get(req, res, next) {
 async function getAuthUser(req, res, next) {
   try {
     const user = await JWTHelper.getAuthUser(req.headers.authorization);
-    console.log(user);
     res.status(httpStatus.OK).send(new APIResponse(user, Utils.messages.SUCCESS_MSG,httpStatus.OK));
   } catch (e) {
     next(e);
